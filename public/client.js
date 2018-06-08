@@ -16,12 +16,12 @@ var jayson = require('jayson');
 // });
 
 
-var outClient = jayson.client.http({
-hostname: '192.168.1.68',
-path:'/trade/app/rpc/coin',
-auth:'xrprpcuser:xrprpcpassword',
-// auth: username + ':' + password
-});
+// var outClient = jayson.client.http({
+// hostname: '192.168.1.68',
+// path:'/trade/app/rpc/coin',
+// auth:'xrprpcuser:xrprpcpassword',
+// // auth: username + ':' + password
+// });
 
 var outClient = jayson.client.http({
 hostname: 'bisail.com',
