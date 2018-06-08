@@ -24,7 +24,7 @@ var newAccount = (account) => {
                                  } , err => {
                                             return database.close().then( () => { throw err ; } )
                                       })
-                          .then( () => resolve(`${info.tag}, ${info.address}`) )  
+                          .then( () => resolve(`${info.tag},${info.address}`) )  
                           .catch( error => reject(uility.errorCase(error))  )                         
     })
 }
@@ -50,10 +50,10 @@ var getAddressByAccount = (account) => {
                            else {
                                database.query('SELECT tag, address FROM account WHERE username = ?',[account]) 
                                .then( (result) => {
-                                                if (result.length > 0) {`${info.tag}, ${info.address}`
+                                                if (result.length > 0) {
                                                     info.address = result[0].address
                                                     info.tag = result[0].tag
-                                                    resolve()
+                                                    resolve(`${info.tag},${info.address}`)
                                                  }
                                                  else {
                                                      throw new Error ('Account not found')

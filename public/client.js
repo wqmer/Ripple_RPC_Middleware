@@ -3,28 +3,32 @@ const rippleApi = new RippleAPI({server: 'wss://s1.ripple.com' });
 var jayson = require('jayson');
  
 // create a client
-var client = jayson.client.http('http://192.168.1.115:3000');
+
+
+var client = jayson.client.http({
+    port: 3000
+});
+
+
 // var client = jayson.client.http({
 //   hostname: '51.15.20.158',
 //   port: '3000'
 // });
 
-// var client = jayson.client.http({
-//   port: 3000
+
+// var outClient = jayson.client.http({
+// hostname: '192.168.1.68',
+// path:'/trade/app/rpc/coin',
+// auth:'xrprpcuser:xrprpcpassword',
+// // auth: username + ':' + password
 // });
 
-
-// var username = 'xrprpcuser'
-// var password = 'xrprpcpassword'
 var outClient = jayson.client.http({
-hostname: '192.168.1.68',
+hostname: 'bisail.com',
 path:'/trade/app/rpc/coin',
 auth:'xrprpcuser:xrprpcpassword',
 // auth: username + ':' + password
-// port: 3000
-
 });
-
 
 var newAddress = (account) => {
       client.request('new_address', [account] , function(err, response) {
@@ -63,7 +67,7 @@ var getBalance = (account) => {
 var getTransactionById = (txid) => {
     client.request('get_transaction_id', [txid] , function(err, response) {
        if(err) {
-                console.log('Error: Can not connect to server') ;
+                console.log(err) ;
                }
        else {
                 console.log(response); 
@@ -78,7 +82,6 @@ var sendTransaction = (obj) => {
                 }
         else {
                   console.log(response); 
-                  // console.log('no error')
                 }
     });
 }
@@ -112,7 +115,6 @@ var testError = (obj) => {
                console.log(err) ;
              }
     else {
-              //  console.log('test err failed'); 
                console.log(response)
              }
  });
@@ -128,8 +130,6 @@ var testError = (obj) => {
 //     if(err) throw err;
 //     console.log(response.result); 
 // });
-
-
 
 
 module.exports = {commitDeposit, sendTransaction, newAddress, getAddress, getBalance, getTransactionById, pushTransaction, testError }

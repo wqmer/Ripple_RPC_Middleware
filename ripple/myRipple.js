@@ -11,7 +11,7 @@ var getTransactionByHash = (txid) => {
                              api.getTransaction(txid) )
                              .then( info => resolve(uility.toTxData(info)) )
               .then(() =>  api.disconnect())
-              .catch( error =>   reject(uility.errorCase(error)) );
+              .catch( error =>  reject(uility.errorCase(error)) );
         })   
   }
 

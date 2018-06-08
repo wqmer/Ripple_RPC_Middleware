@@ -62,7 +62,6 @@ var withdrawlRipple = (txObj) => {
     let hash
     return new Promise ( (resolve,reject) => {          
                            sql.getIdByAddress(txObj.from).then(result => id = result)
-
                           .then ( () => myRippleApi.sendTransaction(txObj.from, uility.getTagAndAd(txObj.to).address, txObj.amount, uility.getTagAndAd(txObj.to).tag) )
                           .then( result =>  {
                                   hash = result.txid
