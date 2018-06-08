@@ -5,9 +5,9 @@ var jayson = require('jayson');
 // create a client
 
 
-var client = jayson.client.http({
-    port: 3000
-});
+// var client = jayson.client.http({
+//     port: 3000
+// });
 
 
 // var client = jayson.client.http({
@@ -16,12 +16,12 @@ var client = jayson.client.http({
 // });
 
 
-// var outClient = jayson.client.http({
-// hostname: '192.168.1.68',
-// path:'/trade/app/rpc/coin',
-// auth:'xrprpcuser:xrprpcpassword',
-// // auth: username + ':' + password
-// });
+var outClient = jayson.client.http({
+hostname: '192.168.1.68',
+path:'/trade/app/rpc/coin',
+auth:'xrprpcuser:xrprpcpassword',
+// auth: username + ':' + password
+});
 
 var outClient = jayson.client.http({
 hostname: 'bisail.com',

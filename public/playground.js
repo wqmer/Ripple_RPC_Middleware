@@ -42,7 +42,7 @@ var withdrawlObj = {
 //             // tag: txtag   
 //         }
 
-// request.newAddress('Kimmy')
+request.newAddress('Kimmy')
 // request.getAddress(2132133232231)   
 // request.getBalance('rffARVU6tptSvwNeuqUrLD6KTwFwvq7C11')
 
@@ -54,7 +54,7 @@ var withdrawlObj = {
 // sql.getAddressByAccount('1231231232').then( result => console.log(result), err => {
 //     console.log (err)
 // })
-depositTx.sendTransaction(txfrom,txto,txamount).then(result => console.log(result))
+// depositTx.sendTransaction(txfrom,txto,txamount).then(result => console.log(result))
 
 // request.sendTransaction(withdrawlObj)
 // request.sendTransaction(fakeobj)
