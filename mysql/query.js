@@ -79,7 +79,7 @@ var getAccountByAddress = (address) => {
                                                   resolve(account)
                                               }
                                               else {
-                                                  throw('Cant find account')
+                                                  throw new Error('Cant find account')
                                               }
 
                                 })
@@ -104,7 +104,7 @@ var getBalancebyTag = (tag) => {
                                                   throw new Error('Cant find account by tag')
                                               }
 
-                                })
+                            })
                           .then( rows  => database.close()  , err => {
                             return database.close().then( () => { throw err ; } )
                              })
@@ -145,13 +145,14 @@ var getAccountByTag = (tag) => {
                                     if (result.length > 0) {
                                         resolve(result[0].username)
                                        }
-                                    else { 
-                                         throw new Error('No account found by tag ')
+                                    else 
+                                       { 
+                                         throw new Error('No account found by tag')
                                        }
                             })
                           .then( rows  => database.close()  , err => {
                             return database.close().then( () => { throw err ; } )
-                             }) 
+                            }) 
                           .catch( error => reject(uility.errorCase(error)))                                                
     })
 }

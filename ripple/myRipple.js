@@ -11,7 +11,7 @@ var getTransactionByHash = (txid) => {
                              api.getTransaction(txid) )
                              .then( info => resolve(uility.toTxData(info)) )
               .then(() =>  api.disconnect())
-              .catch( error =>  reject( error) );
+              .catch( error =>   reject(uility.errorCase(error)) );
         })   
   }
 
@@ -25,8 +25,7 @@ var getTransactionByTag = (address, tag) => {
                                     resolve ( result.map( tx => uility.toTxData(tx) ) )                 
                                   }) 
               .then( () =>  api.disconnect() )
-              // .then( () =>  console.log('done and disconnected.') )
-              .catch(console.error);
+              .catch( error => reject(uility.errorCase(error)));
         })   
   }
 
@@ -37,7 +36,7 @@ var getBalanceByAddress = (address) =>  {
                              api.getAccountInfo(address) )
                              .then( info => resolve(info.xrpBalance) )
                .then(() => api.disconnect() )
-               .catch(error => reject(error));
+               .catch( error => reject(uility.errorCase(error)));
            })  
   }
 

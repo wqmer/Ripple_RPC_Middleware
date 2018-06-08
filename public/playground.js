@@ -33,15 +33,15 @@ var obj = {
             // tag: txtag   
         }
 
-// request.newAddress('test by kimi')
+// request.newAddress('Tom')
 // request.getAddress(12323112123312)   
-// request.getBalance(undefined )
+// request.getBalance('1234,rffARVU6tptSvwNeuqUrLD6KTwFwvq7C11')
 
 // request.getTransactionById(txid)
 // request.getTransactionById(fakeTxid)
 // request.getTransactionById(wrongtxid)
 
-request.sendTransaction(obj)
+// request.sendTransaction(obj)
 // request.sendTransaction(fakeobj)
 // console.log(typeof(typeof('string')) )
 

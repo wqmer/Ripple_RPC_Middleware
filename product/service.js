@@ -20,24 +20,27 @@ var getTransactionByid = (txid) => {
 
 //search tx record in Ripple ledger
 var getTransactionByhash = (txid) => {
+    let tag 
     let user 
     let info 
     return new Promise ( (resolve,reject) => { 
-                           myRippleApi.getTransactionByHash(txid)
-                           .then(  result =>  {                                                               
-                                   sql.getAccountByTag(result.tag)
-                                   .then( username => {
-                                          result.account = username
-                                          return result
+                           myRippleApi.getTransactionByHash(txid) .then(  result =>  { tag = result.tag  } )                                                         
+                           .then( () => sql.getAccountByTag(tag) )
+                           .then( username => {
+                                        // console.log(username)
+                                          if ( usernmae != undefined){
+                                               result.account = username
+                                               return result
+                                          }else {
+                                               throw new Error ('No account match this tx')
+                                          }                  
                                      })
                             .then ( result => {
-                                    delete result.tag
-                                    resolve(result)                
-                                  })                                           
-                             })
-                            .catch(error => reject(uility.errorCase(error))  )
-                       }) 
-
+                                               delete result.tag
+                                               resolve(result)                
+                                    })     
+                            .catch(error => reject(uility.errorCase(error))  )                                      
+    })
 }
 
  var getBalanceByTagOrAd = (account) => {
@@ -73,7 +76,7 @@ var withdrawlRipple = (txObj) => {
                             })   
                            .then( () =>  resolve( hash ) )   
                            .catch( error => reject(uility.errorCase(error))  )
-                      })
+     })
 }
 
 //this tag set by client 
@@ -97,7 +100,7 @@ var withdrawlRippleByAccount = (txObj) => {
                                 }              
                            }) 
                           .catch( error => reject(uility.errorCase(error))  )    
-                      })
+     })
 }
 
 var updateBalanceByAddress = (address) => {  

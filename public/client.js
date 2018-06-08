@@ -3,15 +3,15 @@ const rippleApi = new RippleAPI({server: 'wss://s1.ripple.com' });
 var jayson = require('jayson');
  
 // create a client
-// var client = jayson.client.http('http://192.168.1.115:3000');
+var client = jayson.client.http('http://192.168.1.115:3000');
 // var client = jayson.client.http({
-//   hostname: '192.168.1.115',
+//   hostname: '51.15.20.158',
 //   port: '3000'
 // });
 
-var client = jayson.client.http({
-  port: 3000
-});
+// var client = jayson.client.http({
+//   port: 3000
+// });
 
 
 // var username = 'xrprpcuser'
