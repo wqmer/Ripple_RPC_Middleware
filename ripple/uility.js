@@ -5,11 +5,7 @@ const config = {
           general : {server: 'wss://s1.ripple.com' } 
 }
 
-
-
-
 const toTxData = (obj) => {
-//       return obj
       return { 
                 status: obj.outcome.result === 'tesSUCCESS' ? true : false , 
                 account: undefined,

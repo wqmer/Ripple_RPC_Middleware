@@ -12,7 +12,7 @@ let timeByNow = () =>  {
 
 var rule = new schedule.RecurrenceRule(); 
         // rule = '*/10 * * * * *' ;
-    rule = '*/1 * * * *';
+    rule = '*/30 * * * *';
     schedule.scheduleJob(rule, ( ) => { 
              Tx.find().then( list =>  {
                              if (list.length > 0 ) {

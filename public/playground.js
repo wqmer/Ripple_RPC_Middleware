@@ -14,6 +14,7 @@ var txamount = 0.01
 
 depositTx.sendTransaction(customer,jiusite,txamount,txtag).then(result => console.log(result))
 
+// depositTx.sendTransaction(jiusite,customer,txamount,txtag).then(result => console.log(result))
 // var test =  {            
 //                account: '1_8',
 //                address: '10166,rffARVU6tptSvwNeuqUrLD6KTwFwvq7C11' ,

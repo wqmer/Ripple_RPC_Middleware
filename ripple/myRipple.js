@@ -1,11 +1,12 @@
 const RippleAPI = require('ripple-lib').RippleAPI;
 const Promise = require('bluebird')
 const uility = require('./uility')
+const rpc = require('../config').ripple_rpc.general
 
 var newAddress = () => api.generateAddress()
 
 var getTransactionByHash = (txid) => {  
-    const api = new RippleAPI(uility.config.full);
+    const api = new RippleAPI(rpc);
     return new Promise ( (resolve , reject ) =>  {  
                api.connect().then( () => 
                              api.getTransaction(txid) )
@@ -16,7 +17,7 @@ var getTransactionByHash = (txid) => {
   }
 
 var getTransactionByTag = (address, tag) => { 
-    const api = new RippleAPI(uility.config.full);
+    const api = new RippleAPI(rpc);
     return new Promise ( (resolve , reject ) =>  {  
                api.connect().then( () => 
                              api.getTransactions(address, uility.txOptions) )
@@ -30,7 +31,7 @@ var getTransactionByTag = (address, tag) => {
   }
 
 var getBalanceByAddress = (address) =>  { 
-    const api = new RippleAPI(uility.config.full);
+    const api = new RippleAPI(rpc);
     return new Promise ( (resolve , reject ) =>  {  
                api.connect().then( () =>        
                              api.getAccountInfo(address) )
@@ -41,7 +42,7 @@ var getBalanceByAddress = (address) =>  {
   }
 
 var sendTransaction = (from, to, amount, tag) => { 
-    const api = new RippleAPI(uility.config.full);
+    const api = new RippleAPI(rpc);
     return new Promise (  (resolve ,reject) => {
                api.connect().then( () => 
                              api.preparePayment( from, uility.xrpPayment(from, to, amount, tag) ) )

@@ -1,13 +1,10 @@
 const RippleAPI = require('ripple-lib').RippleAPI;
 const rippleApi = new RippleAPI({server: 'wss://s1.ripple.com' });
 var jayson = require('jayson');
+const config = require('../config');
  
 // create a client
-
-var client = jayson.client.http({
-    port: 3000
-});
-var outClient = jayson.client.http({
+const client = jayson.client.http({
     port: 3000
 });
 
@@ -99,6 +96,9 @@ var commitDeposit = (obj) => {
 }
  
 
+
+
+const outClient = jayson.client.http(config.remote_server);
 
 
 const pushTransactionPromise = (currency,obj) => {

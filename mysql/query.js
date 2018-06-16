@@ -1,5 +1,5 @@
 const Database =  require('./model').Database
-const config = require('./config').config
+const config = require('../config').mysql
 const uility = require('../ripple/uility')
 
 var newAccount = (account) => {   
@@ -58,7 +58,6 @@ var getAddressByAccount = (account) => {
                                                  else {
                                                      throw new Error ('Account not found')
                                                  }
-    
                                   })
                                 .then( rows => database.close(), err => {
                                        return database.close().then( () => { throw err ; } )
@@ -170,10 +169,10 @@ var getIdByAccount = (account) => {
                                               }
                           })
 
-                          .then( rows  => database.close()  , err => {
-                            return database.close().then( () => { throw err ; } )
+                          .then( rows  => database.close(), err => {
+                                 return database.close().then( () => { throw err ; } )
                              })  
-                             .catch( error => reject(uility.errorCase(error)))                             
+                          .catch( error => reject(uility.errorCase(error)))                             
     })
 }
 
@@ -273,7 +272,7 @@ var saveDepositTransaction = (tag, txid) => {
     var database = new Database(config)
     return new Promise ( (resolve ,reject ) => {
                            database.query('SELECT id FROM account WHERE tag = ?',[tag]) 
-                           .then( (result) => database.query('INSERT INTO transaction (txid,id) VALUES (? ,?)',[ txid, parseInt(result[0].id)] )  )
+                          .then( (result) => database.query('INSERT INTO transaction (txid,id) VALUES (? ,?)',[ txid, parseInt(result[0].id)] )  )
                           .then( () => resolve ('save succeessfully')  )
                           .then( () => database.close() , err => {
                            return database.close().then( () => { throw err ; } )
@@ -282,7 +281,16 @@ var saveDepositTransaction = (tag, txid) => {
     })
 }
 
-
+const backupDepositTransaction = (obj) =>  {
+      return new Promise ( (resolve ,reject ) => {
+                           database.query('')    
+                           .then( () => resolve ('save succeessfully')  )
+                           .then( () => database.close() , err => {
+                           return database.close().then( () => { throw err ; } )
+                           }) 
+                           .catch( error => reject(uility.errorCase(error)))                                                   
+     })
+}
 
 
 
@@ -299,5 +307,6 @@ module.exports = {
                    getAccountByAddress,
                    getIdByAddress,
                    getIdByAccount,
-                   getBalancebyTag
+                   getBalancebyTag,
+                   backupDepositTransaction
                  } 
