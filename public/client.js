@@ -4,31 +4,32 @@ var jayson = require('jayson');
  
 // create a client
 
+var client = jayson.client.http({
+    port: 3000
+});
+var outClient = jayson.client.http({
+    port: 3000
+});
 
-// var client = jayson.client.http({
-//     port: 3000
-// });
 
 
 // var client = jayson.client.http({
 //   hostname: '51.15.20.158',
 //   port: '3000'
 // });
-
+// // var outClient = jayson.client.http({
+// // hostname: '192.168.1.68',
+// // path:'/trade/app/rpc/coin',
+// // auth:'xrprpcuser:xrprpcpassword',
+// // // auth: username + ':' + password
+// // });
 
 // var outClient = jayson.client.http({
-// hostname: '192.168.1.68',
+// hostname: 'bisail.com',
 // path:'/trade/app/rpc/coin',
 // auth:'xrprpcuser:xrprpcpassword',
 // // auth: username + ':' + password
 // });
-
-var outClient = jayson.client.http({
-hostname: 'bisail.com',
-path:'/trade/app/rpc/coin',
-auth:'xrprpcuser:xrprpcpassword',
-// auth: username + ':' + password
-});
 
 var newAddress = (account) => {
       client.request('new_address', [account] , function(err, response) {
@@ -96,9 +97,27 @@ var commitDeposit = (obj) => {
                 }
     });
 }
+ 
+
+
+
+const pushTransactionPromise = (currency,obj) => {
+      return new Promise  ( (resolve, reject )=> {
+                             outClient.request('receive_transaction', [currency, obj] , function(err, response) {
+                             if (err) {
+                                        reject(err)   ;
+                                       }
+                             else {
+                                        resolve(response); 
+                                       }
+                              });
+                          })
+}
+
 
 
 var pushTransaction = (currency,obj) => {
+    //promise
     outClient.request('receive_transaction', [currency, obj] , function(err, response) {
      if(err) {
                 console.log(err) ;
@@ -132,4 +151,4 @@ var testError = (obj) => {
 // });
 
 
-module.exports = {commitDeposit, sendTransaction, newAddress, getAddress, getBalance, getTransactionById, pushTransaction, testError }
+module.exports = {commitDeposit, sendTransaction, newAddress, getAddress, getBalance, getTransactionById, pushTransaction, testError, pushTransactionPromise }

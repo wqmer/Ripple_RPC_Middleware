@@ -7,10 +7,8 @@ const sql = require('../mysql/query')
 const toTxData = require('../ripple/uility').toTxData
 const service = require('../product/service')
 const uility = require('../ripple/uility')
+const config = require('../config')
 
-// const api = new RippleAPI({server: 'wss://s1.ripple.com' });
-// const api = new RippleAPI({server: 'ws://51.15.20.134:6006' });
-const port = '3000'
 // create a server
 var server = jayson.server({
 
@@ -63,4 +61,4 @@ var server = jayson.server({
 });
 
 
-server.http().listen(3000);
+server.http().listen(config.app_server.port);
