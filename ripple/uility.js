@@ -123,15 +123,6 @@ const txOptions =  {
 
 const accounts = [
 
-            Jiusite = {
-                        address: 'rffARVU6tptSvwNeuqUrLD6KTwFwvq7C11',
-                        secret: 'sp5MKJ5fu3N3UN1NW1k4dpVWuRcDe'
-          },
-             
-            Kimi = {
-                     address: 'rQHzdWhU9i1oz6LksVPtvUCoKfeHiwWsmv',
-                     secret: 'shuSQaZZfjBmp1FSMGR22hJiQsc6Y',
-          }
       ]
         
 
